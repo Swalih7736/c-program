@@ -12,10 +12,7 @@ void find_set(int x)
 		parent[x] = find_set(parent[x]);
 	return(parent [x]);
 }
-void link(int x,int y)
-{
-	link(find_set(x),  find_set(y));
-}
+
 void link(int x,int y)
 {
 	if(x!=y)
@@ -37,6 +34,10 @@ void link(int x,int y)
 		}
 	}
 }
+void union(int x,int y)
+{
+	link(find_set(x),  find_set(y));
+}
 int main()
 {
 
@@ -45,5 +46,19 @@ int main()
 	make_set(2);
 	make_set(3);
 	make_set(4);
+	
+	
+	union(0,1);
+	union(1,2);
+	union(3,4);
+	union(5,6);
+	union(4,5);
+	union(2,6);
+	
+	
+	
+	for(int i=0;i<7;i++)
+		printf("%d",parent[i]);
+	return(0);
 	
 }
