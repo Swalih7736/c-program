@@ -1,0 +1,44 @@
+-- 
+-- Roll No: 04
+-- Name: AHAMED SWALIH M
+-- Program: Practice Questions - III
+-- 
+
+
+--
+-- SQl Query Statements
+--
+
+
+
+-- Q1. Display all details of all employees.
+SELECT * from employee;
+
+-- Q2. Display only the employee name and salary
+SELECT name,salary FROM employee;
+
+-- Q3. List all employees who belong to department number 10 and draw salary between 20,000 and 30,000.
+SELECT * FROM employee WHERE dno=%s and salary BETWEEN %s and %s;
+
+-- Q4. Display employees whose name starts with the letter ‘A’.
+SELECT * FROM employee WHERE name LIKE 'A%';
+
+-- Q5. Display employees who work in the department named ‘IT’.
+SELECT * FROM employee,department WHERE department.dno=employee.dno and department.dname=%s;
+
+-- Q6. List employees whose salary is greater than the average salary of all employees
+SELECT * FROM employee WHERE salary> (select AVG(salary) from employee);
+
+-- Q7. Display the number of employees in each department.
+SELECT dname,COUNT(*) FROM employee,department WHERE department.dno=employee.dno GROUP BY department.dno;
+
+-- Q8. List departments having more than 3 employees.
+SELECT dname,COUNT(*) FROM employee,department WHERE department.dno=employee.dno GROUP BY department.dno HAVING COUNT(*)>3;
+
+-- Q9. List departments where the average salary is greater than 30,000.
+SELECT dname,avg(salary) FROM employee,department WHERE department.dno=employee.dno GROUP BY department.dno HAVING AVG(salary)>%s;
+
+-- Q10. Display the department name where the highest-paid employee work.
+SELECT dname,salary FROM employee,department WHERE department.dno=employee.dno and employee.salary=(SELECT MAX(salary) FROM employee);
+
+
